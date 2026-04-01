@@ -141,7 +141,7 @@ while (i <= num);
 
 // 4. break 키워드를 이용하여 사용자로부터 입력받은 양수 n에 대하여, n! (n팩토리얼)을 계산하는 프로그램을 작성하세요.
 int n = int.Parse(Console.ReadLine());
-int result = 1;
+long result = 1;
 int i = 1;
 
 while (true)

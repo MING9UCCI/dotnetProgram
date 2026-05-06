@@ -1,4 +1,4 @@
-# 🎓 .NET Program 학습 레포지토리
+# .NET Program 학습 레포지토리
 
 이 Repository는 `.NET Program` 과목을 수강하며 배운 내용들과 **C# 프로그래밍**을 공부하며 기록하는 개인 학습 레포지토리입니다.
 
@@ -8,32 +8,46 @@
 
 ```
 dotnetProgram/
-├── README.md                    # 이 파일 (레포지토리 소개 및 워크플로우)
-├── create-daily-project.ps1     # 날짜별 프로젝트 자동 생성 스크립트
+├── README.md                    # 이 파일
+├── create-daily-project.sh      # 날짜별 프로젝트 자동 생성 스크립트 (macOS/Linux)
+├── create-daily-project.ps1     # 날짜별 프로젝트 자동 생성 스크립트 (Windows PowerShell)
+├── dotnet0311.slnx              # Visual Studio 솔루션 파일
 │
-├── dotnet0311/                  # 2024년 3월 11일 학습
-│   ├── Program.cs
-│   ├── README.md               # 해당 날짜 학습 내용 정리
-│   └── dotnet0311.csproj
+├── dotnet0311/                  # 2026-03-11: 기본 자료형, 연산자, 자료형 변환
+├── dotnet0318/                  # 2026-03-18: Hello World (프로젝트 초기화)
+├── dotnet0325/                  # 2026-03-25: 조건문 (if/else, switch, 삼항 연산자)
+├── dotnet0401/                  # 2026-04-01: 반복문, 배열, break/continue
+├── dotnet0408/                  # 2026-04-08: 클래스 기초 (속성, 메서드, List, Math)
+├── dotnet0429/                  # 2026-04-29: 클래스 심화 (생성자, Property, 오버로딩)
+├── dotnet0506/                  # 2026-05-06: 상속, 오버라이딩, 추상 클래스, is/as
 │
-├── dotnet0318/                  # 2024년 3월 18일 학습
-│   ├── Program.cs
-│   ├── README.md
-│   └── dotnet0318.csproj
-│
-└── ...                          # 추가 날짜별 프로젝트
+└── baekjoon/                    # 백준 알고리즘 문제 풀이
 ```
 
 ## 🚀 학습 워크플로우
 
 ### 1️⃣ 새로운 학습 날짜 프로젝트 생성
 
-```powershell
-# 자동화 스크립트 사용 (추천)
-.\create-daily-project.ps1 -date "0325"
+**macOS / Linux (추천)**
 
-# 또는 수동으로 생성
-dotnet new console -n dotnet0325 -f net10.0
+```bash
+# 실행 권한 부여 (최초 1회만)
+chmod +x ./create-daily-project.sh
+
+# 프로젝트 생성
+./create-daily-project.sh 0513
+```
+
+**Windows (PowerShell)**
+
+```powershell
+.\create-daily-project.ps1 -date "0513"
+```
+
+**수동 생성**
+
+```bash
+dotnet new console -n dotnet0513 -f net10.0
 ```
 
 스크립트 실행 시 자동으로 생성되는 것:
@@ -41,109 +55,37 @@ dotnet new console -n dotnet0325 -f net10.0
 - `README.md` 템플릿 (학습 내용 정리용)
 - `.gitignore` (bin, obj 폴더 제외)
 
-### 2️⃣ 프로젝트로 이동하여 코드 작성
+### 2️⃣ 코드 작성 및 실행
 
-```powershell
-# 해당 날짜 폴더로 이동
-cd dotnet0325
-
-# Visual Studio에서 코드 작성
-code Program.cs
-
-# 또는 Visual Studio Community 2026에서 열기
-```
-
-### 3️⃣ 코드 실행 및 테스트
-
-```powershell
-# 프로젝트 빌드 및 실행
+```bash
+# 해당 날짜 폴더에서 실행
+cd dotnet0513
 dotnet run
 
-# 특정 프로젝트 지정 실행 (루트 디렉토리에서)
-dotnet run --project dotnet0325
+# 루트 디렉토리에서 특정 프로젝트 실행
+dotnet run --project dotnet0513
 ```
 
-### 4️⃣ 학습 내용 정리
-
-```powershell
-# README.md 파일 수정하여 학습 내용 문서화
-code README.md
-```
+### 3️⃣ 학습 내용 정리
 
 각 날짜별 `README.md`에 포함할 내용:
-- 📚 학습 주제
-- 📝 학습 내용 (상세 설명 및 코드 예시)
-- 💡 주요 개념
-- 🔍 실습 코드 목록
-- ✅ 체크리스트
-- 🤔 궁금한 점 / 추가 학습 필요 사항
-- 📌 참고 자료
+- 학습 주제 및 상세 내용
+- 주요 개념 정리
+- 실습 코드 목록
+- 궁금한 점 / 추가 학습 필요 사항
 
-### 5️⃣ Git 커밋 및 푸시
+### 4️⃣ Git 커밋 및 푸시
 
-```powershell
-# 변경사항 스테이징
+```bash
 git add .
-
-# 커밋 (의미 있는 메시지 작성)
-git commit -m "학습: 3월 25일 - [학습 주제명]"
-
-# GitHub에 푸시
-git push origin master
-```
-
-## 💡 팁
-
-### 여러 예제 파일 관리하기
-
-하나의 날짜 프로젝트 안에 여러 예제가 있을 경우:
-
-**방법 1: 메뉴 시스템 (Program.cs)**
-```csharp
-class Program
-{
-    static void Main(string[] args)
-    {
-        Console.WriteLine("=== 3월 25일 학습 예제 ===");
-        Console.WriteLine("1. 변수와 데이터 타입");
-        Console.WriteLine("2. 조건문");
-        Console.WriteLine("3. 반복문");
-        Console.Write("실행할 예제 번호: ");
-        
-        var choice = Console.ReadLine();
-        
-        switch(choice)
-        {
-            case "1": Example1.Run(); break;
-            case "2": Example2.Run(); break;
-            case "3": Example3.Run(); break;
-        }
-    }
-}
-```
-
-**방법 2: 별도 클래스 파일 생성**
-- `Example1.cs`, `Example2.cs` 등으로 분리하여 `Program.cs`에서 호출
-
-### 솔루션 파일로 통합 관리 (선택사항)
-
-```powershell
-# 최초 1회 솔루션 생성
-dotnet new sln -n dotnetProgram
-
-# 기존 프로젝트 추가
-dotnet sln add dotnet0311/dotnet0311.csproj
-dotnet sln add dotnet0318/dotnet0318.csproj
-
-# 새 프로젝트 생성 후 추가
-dotnet sln add dotnet0325/dotnet0325.csproj
+git commit -m "5월 13일 학습 내용"
+git push origin main
 ```
 
 ## 🛠️ 기술 스택
 
-- **.NET 10**
-- **C#**
-- **Visual Studio Community 2026**
+- **.NET 10** / **C#**
+- **Visual Studio Community 2022**
 
 ## 📚 참고 자료
 
@@ -153,10 +95,16 @@ dotnet sln add dotnet0325/dotnet0325.csproj
 
 ## 📊 학습 진행 상황
 
-- [x] 2024-03-11: [학습 주제]
-- [x] 2024-03-18: [학습 주제]
-- [ ] 2024-03-25: 예정
+| 날짜 | 주제 | 상태 |
+|------|------|------|
+| 2026-03-11 | 기본 자료형(int, double, char, string, bool), 산술·비교·논리 연산자, 형변환, Console 입출력 | ✅ |
+| 2026-03-18 | Hello World, 프로젝트 초기화 | ✅ |
+| 2026-03-25 | 조건문 — if/else if/else, 중첩 조건문, switch, 삼항 연산자 | ✅ |
+| 2026-04-01 | 반복문 — while, do-while, for, foreach, 배열, break/continue | ✅ |
+| 2026-04-08 | 클래스 기초 — 인스턴스 생성, 필드·메서드 정의, Random, List, Math | ✅ |
+| 2026-04-29 | 클래스 심화 — 생성자/소멸자, Property, 메서드 오버로딩, static 변수, 캡슐화 | ✅ |
+| 2026-05-06 | 상속, 섀도잉/하이딩(new), 오버라이딩(virtual/override), 추상 클래스, is/as 연산자 | ✅ |
 
 ---
 
-**Happy Coding! 🚀**
+**Happy Coding!**
